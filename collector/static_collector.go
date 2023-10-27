@@ -89,6 +89,13 @@ func updateMetric(ch chan<- prometheus.Metric, metric configure.ConfiguredMetric
 			aggregated = Min(values)
 		case configure.AggregateCollectorMax:
 			aggregated = Max(values)
+		case configure.AggregateCollectorPencentile:
+			if 0 < metric.Aggregation.Percentile && metric.Aggregation.Percentile < 100 {
+				aggregated = Percentile(values, metric.Aggregation.Percentile)
+			} else {
+				level.Error(logger).Log("msg", "invalid pencentile", "name", metric.Name, "labels", labelJson, "value", aggregated)
+				return fmt.Errorf("invalid pencentile: %d", metric.Aggregation.Percentile)
+			}
 		default:
 			return fmt.Errorf("unknown aggregation method: %s", metric.Aggregation.Method)
 		}

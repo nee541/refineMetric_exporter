@@ -21,5 +21,9 @@ func TestReadConfiguration(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	if !config.Verify() {
+		t.Fatal(err)
+	}
+
 	t.Log(config)
 }

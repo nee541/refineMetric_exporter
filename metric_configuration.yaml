@@ -23,3 +23,290 @@ metrics:
       labels:
         - instance
       method: max
+  
+  - name: refine_metrics_platform_server_cpu_utilization_70th_percentile
+    description: 70th percentile CPU utilization of the server
+    data_source_type: promql
+    query: 1 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+
+  - name: refine_metrics_platform_server_cpu_utilization_90th_percentile
+    description: 90th percentile CPU utilization of the server
+    data_source_type: promql
+    query: 1 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90
+  
+  - name: refine_metrics_platform_server_memory_utilization_average
+    description: Average memory utilization of the server
+    data_source_type: promql
+    query: 1 - sum(node_memory_MemAvailable_bytes) by (instance) / sum(node_memory_MemTotal_bytes) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+  
+  - name: refine_metrics_platform_server_memory_utilization_max
+    description: Max memory utilization of the server
+    data_source_type: promql
+    query: 1 - sum(node_memory_MemAvailable_bytes) by (instance) / sum(node_memory_MemTotal_bytes) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
+  
+  - name: refine_metrics_platform_server_memory_utilization_70th_percentile
+    description: 70th percentile memory utilization of the server
+    data_source_type: promql
+    query: 1 - sum(node_memory_MemAvailable_bytes) by (instance) / sum(node_memory_MemTotal_bytes) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+  
+  - name: refine_metrics_platform_server_memory_utilization_90th_percentile
+    description: 90th percentile memory utilization of the server
+    data_source_type: promql
+    query: 1 - sum(node_memory_MemAvailable_bytes) by (instance) / sum(node_memory_MemTotal_bytes) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90
+  
+  - name: refine_metrics_platform_server_block_utilization_average
+    description: Average block utilization of the server
+    data_source_type: promql
+    query: (sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance) - sum(node_filesystem_free_bytes{device!="rootfs"}) by (instance)) / sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+
+  - name: refine_metrics_platform_server_block_utilization_max
+    description: Max block utilization of the server
+    data_source_type: promql
+    query: (sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance) - sum(node_filesystem_free_bytes{device!="rootfs"}) by (instance)) / sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
+  
+  - name: refine_metrics_platform_server_block_utilization_70th_percentile
+    description: 70th percentile block utilization of the server
+    data_source_type: promql
+    query: (sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance) - sum(node_filesystem_free_bytes{device!="rootfs"}) by (instance)) / sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+    
+  - name: refine_metrics_platform_server_block_utilization_90th_percentile
+    description: 90th percentile block utilization of the server
+    data_source_type: promql
+    query: (sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance) - sum(node_filesystem_free_bytes{device!="rootfs"}) by (instance)) / sum(node_filesystem_size_bytes{device!="rootfs"}) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90
+  
+  - name: refine_metrics_platform_server_block_network_receive_total_BytesPerSecond
+    description: Block network receive total BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_receive_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: sum
+  
+  - name: refine_metrics_platform_server_block_network_receive_average_PacketsPerSecond
+    description: Block network receive average PacketsPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+  
+  - name: refine_metrics_platform_server_block_network_receive_max_PacketsPerSecond
+    description: Block network receive max PacketsPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
+  
+  - name: refine_metrics_platform_server_block_network_receive_70th_percentile_PacketsPerSecond
+    description: Block network receive 70th percentile PacketsPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+
+  - name: refine_metrics_platform_server_block_network_receive_90th_percentile_PacketsPerSecond
+    description: Block network receive 90th percentile PacketsPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90
+  
+  - name: refine_metrics_platform_server_block_network_transmit_total_BytesPerSecond
+    description: Block network transmit total BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: sum
+  
+  - name: refine_metrics_platform_server_block_network_transmit_average_BytesPerSecond
+    description: Block network transmit average BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+  
+  - name: refine_metrics_platform_server_block_network_transmit_max_BytesPerSecond
+    description: Block network transmit max BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
+  
+  - name: refine_metrics_platform_server_block_network_transmit_70th_percentile_BytesPerSecond
+    description: Block network transmit 70th percentile BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+    
+  - name: refine_metrics_platform_server_block_network_transmit_90th_percentile_BytesPerSecond
+    description: Block network transmit 90th percentile BytesPerSecond of the server
+    data_source_type: promql
+    query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90
+  
+  - name: refine_metrics_platform_server_PowerConsumption_watts_total
+    description: Power consumption of the server
+    data_source_type: promql
+    query: sum(ipmi_dcmi_power_consumption_watts) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: sum
+  
+  - name: refine_metrics_platform_server_PowerConsumption_watts_average
+    description: Average power consumption of the server
+    data_source_type: promql
+    query: sum(ipmi_dcmi_power_consumption_watts) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+  
+  - name: refine_metrics_platform_server_PowerConsumption_watts_max
+    description: Max power consumption of the server
+    data_source_type: promql
+    query: sum(ipmi_dcmi_power_consumption_watts) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
+  
+  - name: refine_metrics_platform_server_PowerConsumption_watts_70th_percentile
+    description: 70th percentile power consumption of the server
+    data_source_type: promql
+    query: sum(ipmi_dcmi_power_consumption_watts) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 70
+  
+  - name: refine_metrics_platform_server_PowerConsumption_watts_90th_percentile
+    description: 90th percentile power consumption of the server
+    data_source_type: promql
+    query: sum(ipmi_dcmi_power_consumption_watts) by (instance)
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: percentile
+      percentile: 90

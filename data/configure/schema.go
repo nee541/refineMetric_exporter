@@ -5,10 +5,11 @@ import "github.com/prometheus/client_golang/prometheus"
 type AggregateCollector string
 
 const (
-	AggregateCollectorSum AggregateCollector = "sum"
-	AggregateCollectorAvg AggregateCollector = "avg"
-	AggregateCollectorMin AggregateCollector = "min"
-	AggregateCollectorMax AggregateCollector = "max"
+	AggregateCollectorSum        AggregateCollector = "sum"
+	AggregateCollectorAvg        AggregateCollector = "avg"
+	AggregateCollectorMin        AggregateCollector = "min"
+	AggregateCollectorMax        AggregateCollector = "max"
+	AggregateCollectorPencentile AggregateCollector = "percentile"
 )
 
 type DataSourceType string
@@ -24,10 +25,11 @@ var supportedTypes = map[DataSourceType]struct{}{
 
 // Supported aggregation methods
 var supportedMethods = map[AggregateCollector]struct{}{
-	AggregateCollectorSum: {},
-	AggregateCollectorAvg: {},
-	AggregateCollectorMin: {},
-	AggregateCollectorMax: {},
+	AggregateCollectorSum:        {},
+	AggregateCollectorAvg:        {},
+	AggregateCollectorMin:        {},
+	AggregateCollectorMax:        {},
+	AggregateCollectorPencentile: {},
 }
 
 type Configure struct {
@@ -45,8 +47,9 @@ type ConfiguredMetric struct {
 }
 
 type AggregationConfig struct {
-	Labels []string `yaml:"labels"`
-	Method string   `yaml:"method"`
+	Labels     []string `yaml:"labels"`
+	Method     string   `yaml:"method"`
+	Percentile int      `yaml:"percentile"`
 }
 
 func (c *Configure) Verify() bool {
