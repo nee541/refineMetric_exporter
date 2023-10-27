@@ -1,0 +1,25 @@
+endpoints:
+  prometheus: http://192.168.33.7:30092
+
+metrics:
+  - name: refine_metrics_platform_server_cpu_utilization_average
+    description: Average CPU utilization of the server
+    data_source_type: promql
+    query: 1 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: avg
+  
+  - name: refine_metrics_platform_server_cpu_utilization_max
+    description: Max CPU utilization of the server
+    data_source_type: promql
+    query: 1 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
+    expected_labels:
+      - instance
+    aggregation:
+      labels:
+        - instance
+      method: max
