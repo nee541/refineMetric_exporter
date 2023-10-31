@@ -140,8 +140,8 @@ metrics:
       method: percentile
       percentile: 90
   
-  - name: refine_metrics_platform_server_block_network_receive_total_BytesPerSecond
-    description: Block network receive total BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_receive_total_BytesPerSecond
+    description: Network receive total BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_receive_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -151,8 +151,8 @@ metrics:
         - instance
       method: sum
   
-  - name: refine_metrics_platform_server_block_network_receive_average_PacketsPerSecond
-    description: Block network receive average PacketsPerSecond of the server
+  - name: refine_metrics_platform_server_network_receive_average_PacketsPerSecond
+    description: Network receive average PacketsPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -162,8 +162,8 @@ metrics:
         - instance
       method: avg
   
-  - name: refine_metrics_platform_server_block_network_receive_max_PacketsPerSecond
-    description: Block network receive max PacketsPerSecond of the server
+  - name: refine_metrics_platform_server_network_receive_max_PacketsPerSecond
+    description: Network receive max PacketsPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -173,8 +173,8 @@ metrics:
         - instance
       method: max
   
-  - name: refine_metrics_platform_server_block_network_receive_70th_percentile_PacketsPerSecond
-    description: Block network receive 70th percentile PacketsPerSecond of the server
+  - name: refine_metrics_platform_server_network_receive_70th_percentile_PacketsPerSecond
+    description: Network receive 70th percentile PacketsPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -185,8 +185,8 @@ metrics:
       method: percentile
       percentile: 70
 
-  - name: refine_metrics_platform_server_block_network_receive_90th_percentile_PacketsPerSecond
-    description: Block network receive 90th percentile PacketsPerSecond of the server
+  - name: refine_metrics_platform_server_network_receive_90th_percentile_PacketsPerSecond
+    description: Network receive 90th percentile PacketsPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_receive_packets_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -197,8 +197,8 @@ metrics:
       method: percentile
       percentile: 90
   
-  - name: refine_metrics_platform_server_block_network_transmit_total_BytesPerSecond
-    description: Block network transmit total BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_transmit_total_BytesPerSecond
+    description: Network transmit total BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -208,8 +208,8 @@ metrics:
         - instance
       method: sum
   
-  - name: refine_metrics_platform_server_block_network_transmit_average_BytesPerSecond
-    description: Block network transmit average BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_transmit_average_BytesPerSecond
+    description: Network transmit average BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -219,8 +219,8 @@ metrics:
         - instance
       method: avg
   
-  - name: refine_metrics_platform_server_block_network_transmit_max_BytesPerSecond
-    description: Block network transmit max BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_transmit_max_BytesPerSecond
+    description: Network transmit max BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -230,8 +230,8 @@ metrics:
         - instance
       method: max
   
-  - name: refine_metrics_platform_server_block_network_transmit_70th_percentile_BytesPerSecond
-    description: Block network transmit 70th percentile BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_transmit_70th_percentile_BytesPerSecond
+    description: Network transmit 70th percentile BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
@@ -242,8 +242,8 @@ metrics:
       method: percentile
       percentile: 70
     
-  - name: refine_metrics_platform_server_block_network_transmit_90th_percentile_BytesPerSecond
-    description: Block network transmit 90th percentile BytesPerSecond of the server
+  - name: refine_metrics_platform_server_network_transmit_90th_percentile_BytesPerSecond
+    description: Network transmit 90th percentile BytesPerSecond of the server
     data_source_type: promql
     query: sum(rate(node_network_transmit_bytes_total{device!~"lo | veth.* | docker.* | flannel.* | cali.* | cbr.*"}[5m])) by (instance)
     expected_labels:
